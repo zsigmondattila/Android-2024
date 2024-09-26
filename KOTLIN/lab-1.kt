@@ -1,4 +1,6 @@
 import java.util.*
+import kotlin.collections.sorted
+import kotlin.random.Random
 
 // 1. feladat
 fun adder() {
@@ -77,14 +79,85 @@ fun messageCoding(msg: String, func: (String) -> String): String {
 //5. feladat
 fun evenNumbersInAList( numbers: IntArray ) = numbers.filter { it % 2 == 0 }.forEach { println(it) }
 
+//6. feladat
+fun mapExample() {
+    val list = listOf(1, 2, 3, 4, 5, 6)
+    val daysOfWeek = listOf("Hetfo", "Kedd", "Szerda", "Csutortok", "Pentek", "Szombat", "Vasarnap")
+    println("Lista: $list")
+    val doubled = list.map {it * 2}
+    println("Duplazva: $doubled")
+    val capitalizedDaysOfWeek = daysOfWeek.map { it.toUpperCase() }
+    println("Nagybetus napok: ${capitalizedDaysOfWeek}")
+    val firstChars = daysOfWeek.map { it[0].toLowerCase() }
+    println("Kezdobetuk: $firstChars")
+    val nrChars = daysOfWeek.map { it.length }
+    println("Naphosszak: $nrChars")
+    val avgChars = daysOfWeek.map { it.length }.average()
+    println("Atlag: ${avgChars}")
+}
+
+//7. feladat
+fun mutableExample() {
+    val daysOfWeek = listOf("Hetfo", "Kedd", "Szerda", "Csutortok", "Pentek", "Szombat", "Vasarnap")
+    var mutableDaysOfWeek = daysOfWeek.toMutableList()
+
+    mutableDaysOfWeek.removeIf{ it.contains("n") }
+    println(mutableDaysOfWeek)
+
+    var indexDaysOfWeek = mutableDaysOfWeek.withIndex()
+    for ((index, day) in indexDaysOfWeek ) {
+        println("Item at $index is $day")
+    }
+
+    mutableDaysOfWeek.sort()
+    println(mutableDaysOfWeek)
+}
+
+//8. feladat
+fun arrayExample() {
+    val randomArray = Array(10) { Random.nextInt (0, 100) }
+
+    println("Random tomb: ")
+    randomArray.forEach { println(it) }
+
+    println("Random tomb novekvoben: ")
+    randomArray.sort()
+    randomArray.forEach { println(it) }
+
+    if(randomArray.any { it % 2 == 0 }) {
+        println("A tombben van paros elem")
+    }
+
+    if(randomArray.all { it % 2 == 0}) {
+        println("A tombben az osszes elem paros")
+    }
+
+    var sum = 0
+    var nr = 0
+    randomArray.forEach { 
+        sum += it
+        nr += 1
+    }
+    println("Atlag: ${sum/nr}")
+
+}
+
 fun main() {
-    //adder()
-    //days()
-    //primeRange(10)
-    
-	//val encodedMessage = messageCoding("Ez egy szoveg", ::encode)
-    //val decodedMessage = messageCoding(encodedMessage, ::decode)
-    //println("$encodedMessage visszafejtve: $decodedMessage")
-    
-    //evenNumbersInAList(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    val choice = 8
+
+    when (choice) {
+        1 -> adder()
+        2 -> days()
+        3 -> primeRange(10)
+        4 -> {
+            val encodedMessage = messageCoding("Ez egy szoveg", ::encode)
+            val decodedMessage = messageCoding(encodedMessage, ::decode)
+            println("$encodedMessage visszafejtve: $decodedMessage")
+        }
+        5 -> evenNumbersInAList(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+        6 -> mapExample()
+        7 -> mutableExample()
+        8 -> arrayExample()
+        else -> println("Hiba")
+    }
 }
