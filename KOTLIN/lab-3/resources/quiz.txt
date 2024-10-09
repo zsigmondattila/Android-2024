@@ -1,0 +1,30 @@
+What is the default visibility modifier in Kotlin?;public;a: public;b: protected;c: internal;d: private
+Which of the following is the correct way to define a nullable variable in Kotlin?;var name: String?;a: var name: String?;b: var name: String;c: var name: String!!;d: var name: String?
+Which function is used to add an element to a mutable list in Kotlin?;add();a: add();b: insert();c: push();d: append()
+Which of the following is not a valid data type in Kotlin?;long;a: long;b: short;c: double;d: char
+How do you define a constant value in Kotlin?;const val;a: const val;b: val;c: var;d: let
+Which of the following is a valid way to define an immutable variable in Kotlin?;val name: String;a: val name: String;b: var name: String;c: const name: String;d: let name: String
+What is the default value of an uninitialized `Int` in Kotlin?;0;a: 0;b: null;c: 1;d: uninitialized
+Which function is used to check if a string is empty in Kotlin?;isEmpty();a: isEmpty();b: isBlank();c: length();d: isNull()
+What is the range operator in Kotlin?;..;a: ..;b: <->;c: - ;d: ::
+Which type of loop is used to iterate through a range in Kotlin?;for;a: for;b: while;c: do-while;d: until
+What is the purpose of the `init` block in Kotlin classes?;Initialization of properties;a: Initialization of properties;b: Defining methods;c: Declaring variables;d: Declaring data classes
+How do you declare a primary constructor in Kotlin?;class MyClass(val name: String);a: class MyClass(val name: String);b: class MyClass(name: String);c: class MyClass(name: String){val name};d: class MyClass() { var name }
+What keyword is used to define a singleton in Kotlin?;object;a: object;b: singleton;c: companion;d: static
+What does the `!!.toString()` operator do in Kotlin?;Throws an exception if the value is null;a: Throws an exception if the value is null;b: Safely converts the value to a string;c: Converts the value to a string with a default value;d: Checks for null and returns "null"
+Which function is used to get the size of a list in Kotlin?;size;a: size;b: length;c: count();d: getSize()
+What is the keyword used to inherit a class in Kotlin?;:a: :;b: extends;c: inherits;d: super
+How do you define a default parameter value in Kotlin?;fun greet(name: String = "World");a: fun greet(name: String = "World");b: fun greet(name: String: default "World");c: fun greet(name: String)?;d: fun greet(name: String)
+Which of the following operators is used for null safety in Kotlin?;?.;a: ?.;b: !!.;c: !;d: !?
+How do you define an anonymous function in Kotlin?;fun(a: Int) { return a * 2 };a: fun(a: Int) { return a * 2 };b: {a: Int -> return a * 2};c: fun {a: Int -> return a * 2};d: {return a * 2}
+What is the default return type of a function in Kotlin if not specified?;Unit;a: Unit;b: Void;c: Nothing;d: Null
+How can you ensure that a class cannot be subclassed in Kotlin?;final;a: final;b: sealed;c: open;d: abstract
+What does `data` keyword do in Kotlin?;Automatically generates equals, hashCode, and toString methods;a: Automatically generates equals, hashCode, and toString methods;b: Makes the class serializable;c: Allows for immutable properties only;d: Creates a constructor for the class
+Which of the following is used to declare a companion object in Kotlin?;companion object;a: companion object;b: object companion;c: companion class;d: class companion
+Which of the following functions can be used to concatenate two strings in Kotlin?;plus();a: plus();b: concat();c: append();d: join()
+How do you declare a map in Kotlin?;mapOf();a: mapOf();b: mutableMapOf();c: hashMapOf();d: arrayMapOf()
+How do you define an extension function in Kotlin?;fun String.reverse();a: fun String.reverse();b: fun reverse() String;c: reverse(): String { fun String } ;d: reverse() : String
+Which of the following is used to catch exceptions in Kotlin?;try-catch;a: try-catch;b: catch-throw;c: exception-try;d: throw-try
+How do you make a class non-instantiable in Kotlin?;private constructor;a: private constructor;b: abstract class;c: sealed class;d: singleton
+Which of the following is true about Kotlin's `data` class?;It automatically provides equals(), hashCode(), and toString() methods;a: It automatically provides equals(), hashCode(), and toString() methods;b: It does not allow mutable properties;c: It automatically provides a constructor for each property;d: It cannot have primary constructors
+How do you declare an enum class in Kotlin?;enum class Color { RED, GREEN, BLUE };a: enum class Color { RED, GREEN, BLUE };b: class enum Color { RED, GREEN, BLUE };c: class Color { RED, GREEN, BLUE };d: enum Color { RED, GREEN, BLUE }
