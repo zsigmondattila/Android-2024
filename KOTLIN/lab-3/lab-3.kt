@@ -17,42 +17,92 @@ class ItemController(private val itemRepository: ItemRepository) {
 
         return items
     }
+
+    fun performQuiz(nr: Int) {
+        val items = selectRandomItems(nr)
+        var correctAnswers = 0
+
+        for (item in items) {
+            println(item.question)
+            item.answers.forEach { (key, value) ->
+                println("$key: $value")
+            }
+
+            print("Your answer: ")
+            val userAnswer = readLine()
+
+            if (userAnswer?.trim() == item.correctAnswer) {
+                println("Correct!")
+                correctAnswers++
+            } else {
+                println("Wrong! The correct answer is: ${item.correctAnswer}")
+            }
+            println("-------------------------------------------------")
+        }
+
+        println("*************************************************")
+        println("Quiz Finished! You got $correctAnswers/${items.size} correct answers.")
+    }
 }
 
 class ItemService(private val itemRepository: ItemRepository) {
     fun selectRandomItems(nr: Int): List<Item> {
-        return ItemController(itemRepository).selectRandomItems(nr)
+        if (nr > itemRepository.size()) {
+            throw IllegalArgumentException("Not enough items in the repository")
+        }
+
+        val items = mutableListOf<Item>()
+
+        while (items.size < nr) {
+            val item = itemRepository.randomItem()
+            if (!items.contains(item)) {
+                items.add(item)
+            }
+        }
+
+        return items
     }
 }
 
 class ItemRepository {
-
     private var items = mutableListOf<Item>()
 
     init {
         val lines = File("resources/quiz.txt").readLines()
 
+        var question = ""
+        var correctAnswer = ""
+        val answers = mutableMapOf<String, String>()
+
         for (line in lines) {
-            val parts = line.split(";")
-            if (parts.size < 4) continue
-
-            val question = parts[0]
-            val correctAnswer = parts[1]
-            val answers = mutableMapOf<String, String>()
-
-            for (i in 2 until parts.size) {
-                val answerPart = parts[i].split(":")
-                if (answerPart.size == 2) {
-                    val answerKey = answerPart[0].trim()
-                    val answerValue = answerPart[1].trim()
+            when {
+                line.startsWith("Question:") -> {
+                    if (question.isNotEmpty()) {
+                        save(Item(question, answers.toMutableMap(), correctAnswer))
+                        answers.clear()
+                    }
+                    question = line.substringAfter("Question: ").trim()
+                }
+                line.startsWith("Correct:") -> {
+                    correctAnswer = line.substringAfter("Correct: ").trim()
+                }
+                line.matches(Regex("^[a-d]:.*")) -> {
+                    val answerKey = line.substringBefore(":").trim()
+                    val answerValue = line.substringAfter(":").trim()
                     answers[answerKey] = answerValue
                 }
-            }
+                line.isBlank() -> {}
+                else -> {
+                    throw IllegalArgumentException("Invalid line in the file: $line")
+               }
 
-            save(Item(question = question, answers = answers, correctAnswer = correctAnswer))
+            }
+        }
+
+        if (question.isNotEmpty()) {
+            save(Item(question, answers.toMutableMap(), correctAnswer))
         }
     }
-
     fun randomItem(): Item {
         return items.random()
     }
@@ -63,6 +113,10 @@ class ItemRepository {
 
     fun size(): Int {
         return items.size
+    }
+
+    fun getAllItems(): List<Item> {
+        return items
     }
 }
 
@@ -75,14 +129,17 @@ data class Item(
 fun main() {
     val repo = ItemRepository()
     val service = ItemService(repo)
+    val controller = ItemController(repo)
 
     val quizItems = service.selectRandomItems(5)
 
-    for (item in quizItems) {
-        println(item.question)
-        item.answers.forEach { (key, value) ->
-            println("$key: $value")
-        }
-        println("Correct Answer: ${item.correctAnswer}")
-    }
+    // for (item in quizItems) {
+    //     println(item.question)
+    //     item.answers.forEach { (key, value) ->
+    //         println("$key: $value")
+    //     }
+    //     println("Correct Answer: ${item.correctAnswer}")
+    // }
+
+    controller.performQuiz(5)
 }
