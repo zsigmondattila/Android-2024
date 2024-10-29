@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/welcomeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Welcome!"
                     android:textSize="24sp"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="32dp"/>
+                    android:layout_marginBottom="32dp"/>
+
+                <Button
+                    android:id="@+id/getStartedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Get Started"
+                    app:layout_constraintTop_toBottomOf="@id/welcomeTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="24dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
