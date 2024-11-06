@@ -1,11 +1,15 @@
 package com.example.recipehub.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.recipehub.R
+import com.example.recipehub.ui.recipe.viewmodel.RecipeListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +26,9 @@ class RecipesFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val recipeListViewModel: RecipeListViewModel by viewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +41,17 @@ class RecipesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipes, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recipeListViewModel.recipes.observe(viewLifecycleOwner, Observer { recipeList ->
+            Log.d("RecipesFragment", "Fetched Recipes: $recipeList")
+        })
+
+        recipeListViewModel.fetchRecipes()
     }
 
     companion object {
