@@ -2,14 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/home_24px"
         android:title="Home" />
     <item
         android:id="@+id/navigation_recipes"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/search_24px"
         android:title="Recipes" />
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/person_24px"
         android:title="Profile" />
+
+    <item
+        android:id="@+id/navigation_bookmark"
+        android:icon="@drawable/bookmark_24px"
+        android:title="Bookmark" />
+
+    <item
+        android:id="@+id/navigation_add"
+        android:icon="@drawable/add_24px"
+        android:title="Add" />
 </menu>

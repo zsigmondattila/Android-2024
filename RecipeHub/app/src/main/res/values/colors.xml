@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#4CAF50</color> <!-- Friss zöld -->
-    <color name="primaryDarkColor">#388E3C</color> <!-- Sötétebb zöld, pl. appbar-hoz -->
-    <color name="accentColor">#FF7043</color> <!-- Narancs-piros, figyelemfelkeltő gombokhoz -->
-    <color name="backgroundColor">#FFFFFF</color> <!-- Fehér háttér -->
-    <color name="textColorPrimary">#212121</color> <!-- Fekete szöveg -->
-    <color name="textColorSecondary">#757575</color> <!-- Szürke szöveg -->
-    <color name="buttonColor">#FFA726</color> <!-- Világos narancs, pl. kiemelt gombhoz -->
-    <color name="errorColor">#D32F2F</color> <!-- Hibajelzéshez piros -->
+    <color name="primaryColor">#4CAF50</color>
+    <color name="primaryDarkColor">#388E3C</color>
+    <color name="accentColor">#FF7043</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#757575</color>
+    <color name="buttonColor">#FFA726</color>
+    <color name="errorColor">#D32F2F</color>
 </resources>
