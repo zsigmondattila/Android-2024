@@ -1,4 +1,4 @@
-package com.example.recipehub
+package com.example.recipehub.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.recipehub.R
 import com.example.recipehub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
