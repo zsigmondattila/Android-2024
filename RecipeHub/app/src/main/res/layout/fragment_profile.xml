@@ -10,8 +10,53 @@
         android:id="@+id/profileTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Profile"
         android:textSize="24sp"
         android:textColor="@color/textColorPrimary"
-        android:text="This is your Profile" />
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnMyRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Recipes"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnPersonalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Personal Info"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:layout_marginTop="32dp"/>
 
 </LinearLayout>
