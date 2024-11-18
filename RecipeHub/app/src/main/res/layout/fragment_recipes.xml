@@ -14,4 +14,13 @@
         android:textColor="@color/textColorPrimary"
         android:text="Here you can find the recipes" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical" />
+
+
+
 </LinearLayout>

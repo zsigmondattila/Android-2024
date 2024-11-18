@@ -1,4 +1,4 @@
-package com.example.recipehub.repository.recipe.model
+package com.example.recipehub.domain.model
 
 data class UnitModel(
     val name: String,

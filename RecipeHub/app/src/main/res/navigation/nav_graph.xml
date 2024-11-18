@@ -5,31 +5,41 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.recipehub.ui.HomeFragment"
+        android:name="com.example.recipehub.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_recipes"
-        android:name="com.example.recipehub.ui.RecipesFragment"
+        android:name="com.example.recipehub.ui.recipes.RecipesFragment"
         android:label="Recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_navigation_recipes_to_navigation_recipe_detail"
+            app:destination="@id/navigation_recipe_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_recipe_detail"
+        android:name="com.example.recipehub.ui.recipe_detail.RecipeDetailFragment"
+        android:label="RecipeDetail"
+        tools:layout="@layout/fragment_recipe_detail" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.recipehub.ui.ProfileFragment"
+        android:name="com.example.recipehub.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_bookmark"
-        android:name="com.example.recipehub.ui.BookmarkFragment"
+        android:name="com.example.recipehub.ui.bookmark.BookmarkFragment"
         android:label="Bookmark"
         tools:layout="@layout/fragment_bookmark" />
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.example.recipehub.ui.AddFragment"
+        android:name="com.example.recipehub.ui.add.AddFragment"
         android:label="Add"
         tools:layout="@layout/fragment_add" />
 

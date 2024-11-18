@@ -1,6 +1,6 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.repository.recipe.model.RecipeModel
+import com.example.recipehub.domain.model.RecipeModel
 
 data class RecipeDTO (
     val recipeID: Int,
@@ -20,6 +20,7 @@ data class RecipeDTO (
 
 fun RecipeDTO.toModel(): RecipeModel {
     return RecipeModel(
+        id = this.recipeID,
         name = this.name,
         description = this.description,
         thumbnailUrl = this.thumbnailUrl,

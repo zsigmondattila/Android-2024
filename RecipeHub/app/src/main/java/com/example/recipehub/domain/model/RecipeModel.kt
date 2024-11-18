@@ -1,4 +1,4 @@
-package com.example.recipehub.repository.recipe.model
+package com.example.recipehub.domain.model
 
 data class RecipeModel(
     val name: String,
@@ -10,6 +10,7 @@ data class RecipeModel(
     val originalVideoUrl: String,
     val country: String,
     val numServings: Int,
+    val id: Int,
 //    val components: List<ComponentModel>,
 //    val instructions: List<InstructionModel>,
 //    val nutrition: List<NutritionModel>

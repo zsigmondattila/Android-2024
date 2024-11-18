@@ -1,6 +1,6 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.repository.recipe.model.MeasurementModel
+import com.example.recipehub.domain.model.MeasurementModel
 
 data class MeasurementDTO(
     val quantity: String,

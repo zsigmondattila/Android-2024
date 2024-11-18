@@ -1,6 +1,6 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.repository.recipe.model.IngredientModel
+import com.example.recipehub.domain.model.IngredientModel
 
 data class IngredientDTO(
     val name: String

@@ -1,6 +1,6 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.repository.recipe.model.InstructionModel
+import com.example.recipehub.domain.model.InstructionModel
 
 data class InstructionDTO(
     val instructionID: Int,

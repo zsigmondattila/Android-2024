@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.recipehub.repository.recipe.dto.RecipeDTO
 import com.example.recipehub.repository.recipe.dto.toModel
-import com.example.recipehub.repository.recipe.model.RecipeModel
+import com.example.recipehub.domain.model.RecipeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException

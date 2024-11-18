@@ -1,4 +1,4 @@
-package com.example.recipehub.ui.recipe.viewmodel
+package com.example.recipehub.ui.recipes
 
 import android.app.Application
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.recipehub.repository.recipe.RecipeRepository
-import com.example.recipehub.repository.recipe.model.RecipeModel
+import com.example.recipehub.domain.model.RecipeModel
 
 class RecipeListViewModel(application: Application) : AndroidViewModel(application) {
 

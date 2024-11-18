@@ -1,6 +1,6 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.repository.recipe.model.NutritionModel
+import com.example.recipehub.domain.model.NutritionModel
 
 data class NutritionDTO(
     val calories: Int,
