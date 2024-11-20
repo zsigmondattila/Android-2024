@@ -29,7 +29,17 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.recipehub.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_personal_info"
+            app:destination="@id/navigation_personal_info" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_my_recipes"
+            app:destination="@id/navigation_my_recipes" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_bookmark"
@@ -52,7 +62,13 @@
     <fragment
         android:id="@+id/navigation_personal_info"
         android:name="com.example.recipehub.ui.personal_info.PersonalInfoFragment"
-        android:label="Search"
+        android:label="Personal Info"
         tools:layout="@layout/fragment_my_recipes" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.recipehub.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>
