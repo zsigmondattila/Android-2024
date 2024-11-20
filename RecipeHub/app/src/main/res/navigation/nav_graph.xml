@@ -38,9 +38,21 @@
         tools:layout="@layout/fragment_bookmark" />
 
     <fragment
-        android:id="@+id/navigation_add"
-        android:name="com.example.recipehub.ui.add.AddFragment"
+        android:id="@+id/navigation_add_recipe"
+        android:name="com.example.recipehub.ui.add_recipe.AddRecipeFragment"
         android:label="Add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add_recipe" />
+
+    <fragment
+        android:id="@+id/navigation_my_recipes"
+        android:name="com.example.recipehub.ui.my_recipes.MyRecipesFragment"
+        android:label="My recipes"
+        tools:layout="@layout/fragment_my_recipes" />
+
+    <fragment
+        android:id="@+id/navigation_personal_info"
+        android:name="com.example.recipehub.ui.personal_info.PersonalInfoFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_my_recipes" />
 
 </navigation>
