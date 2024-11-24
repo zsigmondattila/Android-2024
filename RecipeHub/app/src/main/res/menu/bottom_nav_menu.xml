@@ -19,7 +19,7 @@
         android:title="Bookmark" />
 
     <item
-        android:id="@+id/navigation_add"
+        android:id="@+id/navigation_add_recipe"
         android:icon="@drawable/add_24px"
         android:title="Add" />
 </menu>

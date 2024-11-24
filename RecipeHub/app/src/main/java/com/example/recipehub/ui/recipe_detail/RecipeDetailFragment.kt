@@ -38,6 +38,22 @@ class RecipeDetailFragment : Fragment(R.layout.fragment_recipe_detail) {
             .load(recipe.thumbnailUrl)
             .placeholder(R.drawable.placeholder_image)
             .into(binding.recipeImage)
+
+        val ingredientsText = recipe.components.joinToString("\n") { "${it.measurement.quantity} ${it.measurement.unit.abbreviation} ${it.ingredient.name}" }
+        binding.recipeComponents.text = ingredientsText
+
+        val instructionsText = recipe.instructions.joinToString("\n") { it.displayText }
+        binding.recipeInstructions.text = instructionsText
+
+        binding.recipeNutrition.text = getString(
+            R.string.nutrition_facts,
+            recipe.nutrition.calories,
+            recipe.nutrition.protein,
+            recipe.nutrition.fat,
+            recipe.nutrition.carbohydrates,
+            recipe.nutrition.sugar,
+            recipe.nutrition.fiber
+        )
     }
 
     override fun onDestroyView() {

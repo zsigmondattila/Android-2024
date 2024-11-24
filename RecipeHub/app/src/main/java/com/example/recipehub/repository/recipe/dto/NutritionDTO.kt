@@ -11,16 +11,19 @@ data class NutritionDTO(
     val fiber: Int
 )
 
-fun NutritionDTO.toModel(): NutritionModel {
-    return NutritionModel(
-        calories = this.calories,
-        protein = this.protein,
-        fat = this.fat,
-        carbohydrates = this.carbohydrates,
-        sugar = this.sugar,
-        fiber = this.fiber
-    )
+fun NutritionDTO?.toModel(): NutritionModel {
+    return this?.let {
+        NutritionModel(
+            calories = it.calories,
+            protein = it.protein,
+            fat = it.fat,
+            carbohydrates = it.carbohydrates,
+            sugar = it.sugar,
+            fiber = it.fiber
+        )
+    } ?: NutritionModel(0, 0, 0, 0, 0, 0)
 }
+
 
 fun List<NutritionDTO>.toModel(): List<NutritionModel> {
     return this.map { it.toModel() }

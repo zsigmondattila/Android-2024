@@ -13,9 +13,9 @@ data class RecipeDTO (
     val originalVideoUrl: String,
     val country: String,
     val numServings: Int,
-//    val components: List<ComponentDTO>,
-//    val instructions: List<InstructionDTO>,
-//    val nutritions: List<NutritionDTO>
+    val components: List<ComponentDTO>,
+    val instructions: List<InstructionDTO>,
+    val nutrition: NutritionDTO
 )
 
 fun RecipeDTO.toModel(): RecipeModel {
@@ -25,9 +25,9 @@ fun RecipeDTO.toModel(): RecipeModel {
         description = this.description,
         thumbnailUrl = this.thumbnailUrl,
         isPublic = this.isPublic ?: false,
-//        components = this.components.map { it.toModel() },
-//        instructions = this.instructions.map { it.toModel() },
-//        nutrition = this.nutritions.map { it.toModel() },
+        components = this.components.map { it.toModel() },
+        instructions = this.instructions.map { it.toModel() },
+        nutrition = this.nutrition.toModel(),
         keywords = this.keywords,
         userEmail = this.userEmail,
         originalVideoUrl = this.originalVideoUrl,
