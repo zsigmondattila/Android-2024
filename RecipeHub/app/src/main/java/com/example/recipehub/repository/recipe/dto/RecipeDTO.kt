@@ -15,6 +15,7 @@ data class RecipeDTO (
     val numServings: Int,
     val components: List<ComponentDTO>,
     val instructions: List<InstructionDTO>,
+    val ingredients: List<IngredientDTO>,
     val nutrition: NutritionDTO
 )
 
@@ -27,6 +28,7 @@ fun RecipeDTO.toModel(): RecipeModel {
         isPublic = this.isPublic ?: false,
         components = this.components.map { it.toModel() },
         instructions = this.instructions.map { it.toModel() },
+        ingredients = this.ingredients.map { it.toModel() },
         nutrition = this.nutrition.toModel(),
         keywords = this.keywords,
         userEmail = this.userEmail,

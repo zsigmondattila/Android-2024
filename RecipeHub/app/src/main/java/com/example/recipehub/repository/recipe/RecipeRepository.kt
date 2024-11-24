@@ -7,6 +7,7 @@ import com.example.recipehub.repository.recipe.dto.toModel
 import com.example.recipehub.domain.model.RecipeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.FileOutputStream
 import java.io.IOException
 
 class RecipeRepository(private val context: Context) {
@@ -16,6 +17,24 @@ class RecipeRepository(private val context: Context) {
     fun getAllRecipes(): List<RecipeModel> {
         return readAllRecipes(context).toModel()
     }
+
+    suspend fun saveRecipe(recipe: RecipeModel) {
+        val recipeList = readAllRecipes(context).toModel().toMutableList()
+        recipeList.add(recipe)
+
+        val jsonString = gson.toJson(recipeList)
+
+        try {
+            val outputStream: FileOutputStream = context.openFileOutput("all_recipes.json", Context.MODE_PRIVATE)
+            outputStream.write(jsonString.toByteArray())
+            outputStream.close()
+
+            Log.i("GSON", "Recipe saved successfully")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
 
     private fun readAllRecipes(context: Context): List<RecipeDTO> {
         val gson = Gson()

@@ -13,5 +13,6 @@ data class RecipeModel(
     val id: Int,
     val components: List<ComponentModel>,
     val instructions: List<InstructionModel>,
+    val ingredients: List<IngredientModel>,
     val nutrition: NutritionModel
 )
