@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Română</item>
+        <item>Magyar</item>
+    </string-array>
+</resources>

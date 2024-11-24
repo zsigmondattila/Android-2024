@@ -57,7 +57,11 @@
         android:id="@+id/navigation_my_recipes"
         android:name="com.example.recipehub.ui.my_recipes.MyRecipesFragment"
         android:label="My recipes"
-        tools:layout="@layout/fragment_my_recipes" />
+        tools:layout="@layout/fragment_my_recipes" >
+        <action
+            android:id="@+id/action_navigation_my_recipes_to_navigation_recipe_detail"
+            app:destination="@id/navigation_recipe_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_personal_info"

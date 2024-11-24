@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -30,7 +32,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_recipes, R.id.navigation_profile, R.id.navigation_bookmark, R.id.navigation_add
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }
