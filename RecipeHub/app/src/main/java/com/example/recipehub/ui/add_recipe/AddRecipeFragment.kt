@@ -16,10 +16,13 @@ import com.example.recipehub.domain.model.IngredientModel
 import com.example.recipehub.domain.model.InstructionModel
 import com.example.recipehub.domain.model.NutritionModel
 import com.example.recipehub.domain.model.RecipeModel
+import com.example.recipehub.repository.recipe.RecipeRepository
 
 class AddRecipeFragment : Fragment() {
 
-    val addRecipeViewModel = ViewModelProvider(this).get(AddRecipeViewModel::class.java)
+    private val addRecipeViewModel by viewModels<AddRecipeViewModel> {
+        AddRecipeViewModelFactory(RecipeRepository(requireContext()))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
