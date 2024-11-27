@@ -1,9 +1,10 @@
-package com.example.recipehub.data
+package com.example.recipehub.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.recipehub.data.entities.RecipeEntity
 
 @Dao
 interface RecipeDao {

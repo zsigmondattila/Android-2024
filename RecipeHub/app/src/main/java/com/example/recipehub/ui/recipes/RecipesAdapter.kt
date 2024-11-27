@@ -8,10 +8,10 @@ import com.example.recipehub.R
 import com.example.recipehub.databinding.ItemRecipeBinding
 import com.example.recipehub.domain.model.RecipeModel
 
-class RecipesListAdapter(
+class RecipesAdapter(
     private var recipes: List<RecipeModel>,
     private val onRecipeClickListener: OnRecipeClickListener
-) : RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>() {
+) : RecyclerView.Adapter<RecipesAdapter.RecipeItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeItemViewHolder {
         val binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)

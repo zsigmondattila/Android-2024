@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.recipehub.R
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.databinding.FragmentRecipesBinding
@@ -20,8 +19,8 @@ import kotlinx.coroutines.launch
 
 class RecipesFragment : Fragment() {
 
-    private val recipeListViewModel: RecipeListViewModel by viewModels()
-    private lateinit var recipeAdapter: RecipesListAdapter
+    private val recipesViewModel: RecipesViewModel by viewModels()
+    private lateinit var recipeAdapter: RecipesAdapter
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
 
@@ -39,10 +38,10 @@ class RecipesFragment : Fragment() {
         initRecyclerView()
 
         lifecycleScope.launch {
-            recipeListViewModel.fetchRecipes()
+            recipesViewModel.fetchRecipes()
         }
 
-        recipeListViewModel.recipes.observe(viewLifecycleOwner, Observer { recipeList ->
+        recipesViewModel.recipes.observe(viewLifecycleOwner, Observer { recipeList ->
             if (recipeList.isNotEmpty()) {
                 recipeAdapter.updateRecipes(recipeList)
             } else {
@@ -53,7 +52,7 @@ class RecipesFragment : Fragment() {
 
 
     private fun initRecyclerView() {
-        recipeAdapter = RecipesListAdapter(emptyList(), object : RecipesListAdapter.OnRecipeClickListener {
+        recipeAdapter = RecipesAdapter(emptyList(), object : RecipesAdapter.OnRecipeClickListener {
             override fun onRecipeClick(recipe: RecipeModel) {
                 navigateToRecipeDetails(recipe)
             }

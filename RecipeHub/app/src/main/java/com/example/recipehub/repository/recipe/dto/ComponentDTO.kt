@@ -11,17 +11,3 @@ data class ComponentDTO(
     val measurement: MeasurementDTO,
     val position: Int
 )
-
-fun ComponentDTO.toModel(): ComponentModel {
-    return ComponentModel(
-        rawText = this.rawText,
-        ingredient = this.ingredient.toModel(),
-        measurement = this.measurement.toModel(),
-        extraComment = this.extraComment,
-        position = this.position
-    )
-}
-
-fun List<ComponentDTO>.toModel(): List<ComponentModel> {
-    return this.map { it.toModel() }
-}

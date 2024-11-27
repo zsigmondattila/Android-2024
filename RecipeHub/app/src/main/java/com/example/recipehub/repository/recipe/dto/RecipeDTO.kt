@@ -1,7 +1,5 @@
 package com.example.recipehub.repository.recipe.dto
 
-import com.example.recipehub.domain.model.RecipeModel
-
 data class RecipeDTO (
     val recipeID: Int,
     val name: String,
@@ -18,26 +16,3 @@ data class RecipeDTO (
     val ingredients: List<IngredientDTO>,
     val nutrition: NutritionDTO
 )
-
-fun RecipeDTO.toModel(): RecipeModel {
-    return RecipeModel(
-        id = this.recipeID,
-        name = this.name,
-        description = this.description,
-        thumbnailUrl = this.thumbnailUrl,
-        isPublic = this.isPublic ?: false,
-        components = this.components.map { it.toModel() },
-        instructions = this.instructions.map { it.toModel() },
-        ingredients = this.ingredients.map { it.toModel() },
-        nutrition = this.nutrition.toModel(),
-        keywords = this.keywords,
-        userEmail = this.userEmail,
-        originalVideoUrl = this.originalVideoUrl,
-        country = this.country,
-        numServings = this.numServings
-    )
-}
-
-fun List<RecipeDTO>.toModel(): List<RecipeModel> {
-    return this.map { it.toModel() }
-}

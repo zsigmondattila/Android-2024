@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.recipehub.repository.recipe.RecipeRepository
 import com.example.recipehub.domain.model.RecipeModel
 
-class RecipeListViewModel(application: Application) : AndroidViewModel(application) {
+class RecipesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val recipeRepository = RecipeRepository(application)
 
@@ -22,4 +22,5 @@ class RecipeListViewModel(application: Application) : AndroidViewModel(applicati
 
         _recipes.value = recipeList
     }
+
 }

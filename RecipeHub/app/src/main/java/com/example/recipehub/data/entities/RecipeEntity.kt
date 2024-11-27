@@ -1,4 +1,4 @@
-package com.example.recipehub.data
+package com.example.recipehub.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

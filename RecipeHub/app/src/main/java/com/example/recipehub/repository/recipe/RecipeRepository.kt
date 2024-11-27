@@ -3,22 +3,18 @@ package com.example.recipehub.repository.recipe
 import android.content.Context
 import android.util.Log
 import com.example.recipehub.repository.recipe.dto.RecipeDTO
-import com.example.recipehub.repository.recipe.dto.toModel
+import com.example.recipehub.repository.recipe.mapper.toModel
 import com.example.recipehub.domain.model.RecipeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.FileOutputStream
 import java.io.IOException
-import com.example.recipehub.data.RecipeDao
-import com.example.recipehub.data.RecipeEntity
+import com.example.recipehub.data.entities.RecipeEntity
 import org.json.JSONObject
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.recipehub.data.RecipeDatabase
-import com.example.recipehub.domain.model.toDTO
+import com.example.recipehub.api.RecipeApiService
+import com.example.recipehub.data.database.RecipeDatabase
+import com.example.recipehub.repository.recipe.mapper.toDTO
 
 class RecipeRepository(private val context: Context) {
 
@@ -34,6 +30,17 @@ class RecipeRepository(private val context: Context) {
                 }
                 gson.fromJson(jsonObject.toString(), RecipeDTO::class.java).toModel()
             }
+        }
+    }
+
+    suspend fun getAllRecipesFromAPI(): List<RecipeModel> {
+        return withContext(Dispatchers.IO) {
+            val recipeList = mutableListOf<RecipeModel>()
+            val response = RecipeApiService.getRecipes()
+            for (recipeDTO in response) {
+                recipeList.add(recipeDTO.toModel())
+            }
+            recipeList
         }
     }
 
@@ -74,10 +81,6 @@ class RecipeRepository(private val context: Context) {
             e.printStackTrace()
         }
         return recipeList
-    }
-
-    fun fetchRecipesFromAPI() {
-
     }
 
 }

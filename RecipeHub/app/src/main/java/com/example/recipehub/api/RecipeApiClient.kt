@@ -9,7 +9,7 @@ class RecipeApiClient {
             "https://recipe-appservice-cthjbdfafnhfdtes.germanywestcentral-01.azurewebsites.net/"
     }
 
-    val recipeApiService: RecipeApiService
+    private val recipeApiService: RecipeApiService
 
     init {
         val retrofit = Retrofit.Builder()
@@ -18,4 +18,7 @@ class RecipeApiClient {
             .build()
         recipeApiService = retrofit.create(RecipeApiService::class.java)
     }
+
+    suspend fun getRecipes() = recipeApiService.getRecipes()
+
 }

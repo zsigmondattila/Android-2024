@@ -15,15 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipehub.R
 import com.example.recipehub.databinding.FragmentRecipesBinding
 import com.example.recipehub.domain.model.RecipeModel
-import com.example.recipehub.ui.recipes.RecipeListViewModel
-import com.example.recipehub.ui.recipes.RecipesListAdapter
+import com.example.recipehub.ui.recipes.RecipesViewModel
+import com.example.recipehub.ui.recipes.RecipesAdapter
 import kotlinx.coroutines.launch
 
 class MyRecipesFragment : Fragment() {
 
 
-    private val recipeListViewModel: RecipeListViewModel by viewModels()
-    private lateinit var recipeAdapter: RecipesListAdapter
+    private val recipeListViewModel: RecipesViewModel by viewModels()
+    private lateinit var recipeAdapter: RecipesAdapter
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
 
@@ -55,7 +55,7 @@ class MyRecipesFragment : Fragment() {
 
 
     private fun initRecyclerView() {
-        recipeAdapter = RecipesListAdapter(emptyList(), object : RecipesListAdapter.OnRecipeClickListener {
+        recipeAdapter = RecipesAdapter(emptyList(), object : RecipesAdapter.OnRecipeClickListener {
             override fun onRecipeClick(recipe: RecipeModel) {
                 navigateToRecipeDetails(recipe)
             }
