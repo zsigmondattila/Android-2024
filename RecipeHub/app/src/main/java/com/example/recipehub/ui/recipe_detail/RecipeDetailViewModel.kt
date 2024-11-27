@@ -14,7 +14,7 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
     private val _recipe = MutableLiveData<RecipeModel?>()
     val recipe: LiveData<RecipeModel?> get() = _recipe
 
-    fun getRecipeById(recipeId: Int): LiveData<RecipeModel?> {
+    suspend fun getRecipeById(recipeId: Int): LiveData<RecipeModel?> {
         val allRecipes = recipeRepository.getAllRecipes()
         _recipe.value = allRecipes.find { it.id == recipeId }
         return recipe

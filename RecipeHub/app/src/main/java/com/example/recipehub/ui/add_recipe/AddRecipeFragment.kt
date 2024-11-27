@@ -1,5 +1,6 @@
 package com.example.recipehub.ui.add_recipe
 
+import AddRecipeViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.recipehub.R
 import com.example.recipehub.domain.model.IngredientModel
 import com.example.recipehub.domain.model.InstructionModel
@@ -17,7 +19,7 @@ import com.example.recipehub.domain.model.RecipeModel
 
 class AddRecipeFragment : Fragment() {
 
-    private val addRecipeViewModel: AddRecipeViewModel by viewModels()
+    val addRecipeViewModel = ViewModelProvider(this).get(AddRecipeViewModel::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +74,7 @@ class AddRecipeFragment : Fragment() {
                 description = recipeDescription,
                 ingredients = ingredients.map { IngredientModel(it) },
                 instructions = instructions.mapIndexed { index, instruction ->
-                    InstructionModel(instruction, index + 1)
+                    InstructionModel(instructionID = index + 1, displayText = instruction, position = index + 1)
                 },
                 components = emptyList(),
                 country = "",

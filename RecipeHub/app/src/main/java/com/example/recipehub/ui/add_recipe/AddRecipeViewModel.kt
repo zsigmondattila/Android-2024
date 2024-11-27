@@ -1,15 +1,13 @@
-package com.example.recipehub.ui.add_recipe
-
-import android.content.Context
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.repository.recipe.RecipeRepository
 import kotlinx.coroutines.launch
 
-class AddRecipeViewModel(private val context: Context) : ViewModel() {
+class AddRecipeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val recipeRepository = RecipeRepository(context)
+    private val recipeRepository = RecipeRepository(application)
 
     fun saveRecipe(recipe: RecipeModel) {
         viewModelScope.launch {

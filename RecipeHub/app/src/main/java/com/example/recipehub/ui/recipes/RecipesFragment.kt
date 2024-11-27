@@ -9,12 +9,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipehub.R
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.databinding.FragmentRecipesBinding
+import kotlinx.coroutines.launch
 
 class RecipesFragment : Fragment() {
 
@@ -36,6 +38,10 @@ class RecipesFragment : Fragment() {
 
         initRecyclerView()
 
+        lifecycleScope.launch {
+            recipeListViewModel.fetchRecipes()
+        }
+
         recipeListViewModel.recipes.observe(viewLifecycleOwner, Observer { recipeList ->
             if (recipeList.isNotEmpty()) {
                 recipeAdapter.updateRecipes(recipeList)
@@ -43,9 +49,8 @@ class RecipesFragment : Fragment() {
                 Log.d("RecipesFragment", "No recipes found.")
             }
         })
-
-        recipeListViewModel.fetchRecipes()
     }
+
 
     private fun initRecyclerView() {
         recipeAdapter = RecipesListAdapter(emptyList(), object : RecipesListAdapter.OnRecipeClickListener {

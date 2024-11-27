@@ -15,7 +15,7 @@ class MyRecipesViewModel(application: Application) : AndroidViewModel(applicatio
     private val _recipes = MutableLiveData<List<RecipeModel>>()
     val recipes: LiveData<List<RecipeModel>> get() = _recipes
 
-    fun fetchRecipes() {
+    suspend fun fetchRecipes() {
         val recipeList = recipeRepository.getAllRecipes()
 
         Log.d("RecipeListViewModel", "Fetched Recipes: $recipeList")

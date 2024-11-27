@@ -7,31 +7,49 @@ import com.example.recipehub.repository.recipe.dto.toModel
 import com.example.recipehub.domain.model.RecipeModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.FileOutputStream
 import java.io.IOException
+import com.example.recipehub.data.RecipeDao
+import com.example.recipehub.data.RecipeEntity
+import org.json.JSONObject
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.recipehub.data.RecipeDatabase
+import com.example.recipehub.domain.model.toDTO
 
 class RecipeRepository(private val context: Context) {
 
+    private val database = RecipeDatabase.getDatabase(context)
+    private val recipeDao = database.recipeDao()
     private val gson = Gson()
 
-    fun getAllRecipes(): List<RecipeModel> {
-        return readAllRecipes(context).toModel()
+    suspend fun getAllRecipes(): List<RecipeModel> {
+        return withContext(Dispatchers.IO) {
+            recipeDao.getAllRecipes().map {
+                val jsonObject = JSONObject(it.json).apply {
+                    put("id", it.internalId)
+                }
+                gson.fromJson(jsonObject.toString(), RecipeDTO::class.java).toModel()
+            }
+        }
     }
 
     suspend fun saveRecipe(recipe: RecipeModel) {
-        val recipeList = readAllRecipes(context).toModel().toMutableList()
-        recipeList.add(recipe)
+        withContext(Dispatchers.IO) {
+            val recipeJson = gson.toJson(recipe.toDTO())
+            val recipeEntity = RecipeEntity(json = recipeJson)
+            recipeDao.insertRecipe(recipeEntity)
+        }
+    }
 
-        val jsonString = gson.toJson(recipeList)
-
-        try {
-            val outputStream: FileOutputStream = context.openFileOutput("all_recipes.json", Context.MODE_PRIVATE)
-            outputStream.write(jsonString.toByteArray())
-            outputStream.close()
-
-            Log.i("GSON", "Recipe saved successfully")
-        } catch (e: IOException) {
-            e.printStackTrace()
+    suspend fun deleteRecipe(recipe: RecipeModel) {
+        withContext(Dispatchers.IO) {
+            val recipeJson = gson.toJson(recipe.toDTO())
+            val recipeEntity = RecipeEntity(json = recipeJson)
+            recipeDao.deleteRecipe(recipeEntity)
         }
     }
 
@@ -56,6 +74,10 @@ class RecipeRepository(private val context: Context) {
             e.printStackTrace()
         }
         return recipeList
+    }
+
+    fun fetchRecipesFromAPI() {
+
     }
 
 }
