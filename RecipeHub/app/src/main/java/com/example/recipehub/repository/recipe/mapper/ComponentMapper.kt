@@ -1,7 +1,6 @@
 package com.example.recipehub.repository.recipe.mapper
 
 import com.example.recipehub.domain.model.ComponentModel
-import com.example.recipehub.domain.model.toDTO
 import com.example.recipehub.repository.recipe.dto.ComponentDTO
 
 fun ComponentDTO.toModel(): ComponentModel {

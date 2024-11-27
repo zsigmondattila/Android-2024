@@ -9,5 +9,4 @@ interface RecipeApiService {
 
     @GET("api/recipes/{id}")
     suspend fun getRecipeById(id: Int): RecipeDTO
-
 }

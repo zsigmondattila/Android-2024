@@ -16,7 +16,7 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
     val recipes: LiveData<List<RecipeModel>> get() = _recipes
 
     suspend fun fetchRecipes() {
-        val recipeList = recipeRepository.getAllRecipes()
+        val recipeList = recipeRepository.readRecipesFromDatabase()
 
         Log.d("RecipeListViewModel", "Fetched Recipes: $recipeList")
 

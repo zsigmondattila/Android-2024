@@ -11,7 +11,7 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun saveRecipe(recipe: RecipeModel) {
         viewModelScope.launch {
-            recipeRepository.saveRecipe(recipe)
+            recipeRepository.saveRecipeToDatabase(recipe)
         }
     }
 }
