@@ -41,12 +41,12 @@ class RecipesAdapter(
                 .into(binding.recipeImage)
 
             binding.root.setOnClickListener {
-                onRecipeClickListener.onRecipeClick(recipe)
+                onRecipeClickListener.onRecipeClick(recipe.id)
             }
         }
     }
 
     interface OnRecipeClickListener {
-        fun onRecipeClick(recipe: RecipeModel)
+        fun onRecipeClick(recipeId: Int)
     }
 }

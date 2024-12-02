@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.repository.recipe.RecipeRepository
+import kotlinx.coroutines.launch
 
 class RecipeDetailViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -14,9 +16,10 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
     private val _recipe = MutableLiveData<RecipeModel?>()
     val recipe: LiveData<RecipeModel?> get() = _recipe
 
-    suspend fun getRecipeById(recipeId: Int): LiveData<RecipeModel?> {
-        val allRecipes = recipeRepository.readRecipesFromDatabase()
-        _recipe.value = allRecipes.find { it.id == recipeId }
-        return recipe
+    fun getRecipeById(recipeId: Int) {
+        viewModelScope.launch {
+            val recipeData = recipeRepository.getRecipeByIdFromAPI(recipeId)
+            _recipe.value = recipeData
+        }
     }
 }

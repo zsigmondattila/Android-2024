@@ -8,16 +8,16 @@ fun RecipeDTO.toModel(): RecipeModel {
         id = this.recipeID,
         name = this.name,
         description = this.description,
-        thumbnailUrl = this.thumbnailUrl,
+        thumbnailUrl = this.thumbnailUrl.orEmpty(),
         isPublic = this.isPublic ?: false,
-        components = this.components.map { it.toModel() },
+        components = this.components.orEmpty().map { it.toModel() },
         instructions = this.instructions.map { it.toModel() },
-        ingredients = this.ingredients.map { it.toModel() },
+        ingredients = this.ingredients.orEmpty().map { it.toModel() },
         nutrition = this.nutrition.toModel(),
-        keywords = this.keywords,
-        userEmail = this.userEmail,
-        originalVideoUrl = this.originalVideoUrl,
-        country = this.country,
+        keywords = this.keywords.orEmpty(),
+        userEmail = this.userEmail.orEmpty(),
+        originalVideoUrl = this.originalVideoUrl.orEmpty(),
+        country = this.country.orEmpty(),
         numServings = this.numServings
     )
 }

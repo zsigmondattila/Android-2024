@@ -61,13 +61,36 @@ class RecipeRepository(private val context: Context) {
             val recipeList = mutableListOf<RecipeModel>()
             try {
                 val response = RecipeApiClient.apiService.getRecipes()
-                for (recipeDTO in response) {
-                    recipeList.add(recipeDTO.toModel())
+
+                Log.d("RecipeRepository", "API response: $response")
+
+                if (response != null && response.isNotEmpty()) {
+                    for (recipeDTO in response) {
+                        recipeDTO?.let {
+                            recipeList.add(it.toModel())
+                        }
+                    }
+                } else {
+                    Log.e("RecipeRepository", "API response is empty or null")
                 }
             } catch (e: Exception) {
                 Log.e("RecipeRepository", "Failed to fetch recipes from API: ${e.message}")
             }
             return@withContext recipeList
+        }
+    }
+
+    suspend fun getRecipeByIdFromAPI(recipeId: Int): RecipeModel? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = RecipeApiClient.apiService.getRecipeById(recipeId)
+
+                return@withContext response.toModel()
+            } catch (e: Exception) {
+                Log.e("RecipeRepository", "Failed to fetch recipe by ID: ${e.message}")
+                Log.e("RecipeRepository", "Recipe ID: $recipeId")
+                return@withContext null
+            }
         }
     }
 

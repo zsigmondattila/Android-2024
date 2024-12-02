@@ -50,11 +50,10 @@ class RecipesFragment : Fragment() {
         })
     }
 
-
     private fun initRecyclerView() {
         recipeAdapter = RecipesAdapter(emptyList(), object : RecipesAdapter.OnRecipeClickListener {
-            override fun onRecipeClick(recipe: RecipeModel) {
-                navigateToRecipeDetails(recipe)
+            override fun onRecipeClick(recipeId: Int) {
+                navigateToRecipeDetails(recipeId)
             }
         })
 
@@ -64,10 +63,10 @@ class RecipesFragment : Fragment() {
         }
     }
 
-    private fun navigateToRecipeDetails(recipe: RecipeModel) {
+    private fun navigateToRecipeDetails(recipeId: Int) {
         findNavController().navigate(
             R.id.action_navigation_recipes_to_navigation_recipe_detail,
-            bundleOf("recipeId" to recipe.id)
+            bundleOf("RECIPE_ID" to recipeId)
         )
     }
 
@@ -76,3 +75,4 @@ class RecipesFragment : Fragment() {
         _binding = null
     }
 }
+
