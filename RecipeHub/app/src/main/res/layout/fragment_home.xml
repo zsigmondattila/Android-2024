@@ -127,53 +127,11 @@
             android:fillViewport="true">
 
             <LinearLayout
+                android:id="@+id/recommendations_container"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="start">
-
-                <ImageView
-                    android:id="@+id/recommendation1"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Recipe 1"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageView
-                    android:id="@+id/recommendation2"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Recipe 2"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageView
-                    android:id="@+id/recommendation3"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Recipe 3"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageView
-                    android:id="@+id/recommendation4"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Recipe 3"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageView
-                    android:id="@+id/recommendation5"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Recipe 3"
-                    android:layout_marginEnd="16dp"/>
-
-            </LinearLayout>
-
+                android:gravity="start" />
         </HorizontalScrollView>
 
         <TextView

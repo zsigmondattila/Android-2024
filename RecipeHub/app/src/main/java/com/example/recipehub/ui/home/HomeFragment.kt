@@ -1,11 +1,14 @@
 package com.example.recipehub.ui.home
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,6 +20,11 @@ import com.example.recipehub.databinding.FragmentHomeBinding
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.ui.recipes.RecipesViewModel
 import kotlinx.coroutines.launch
+import android.widget.LinearLayout
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+
 
 class HomeFragment : Fragment() {
 
@@ -73,25 +81,66 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateRecommendations(recommendations: List<RecipeModel>) {
-        val recommendationViews = listOf(
-            binding.recommendation1, binding.recommendation2, binding.recommendation3,
-            binding.recommendation4, binding.recommendation5
-        )
+        val container = binding.recommendationsContainer
+        container.removeAllViews()
 
-        recommendations.forEachIndexed { index, recipe ->
-            val imageView = recommendationViews[index]
+        recommendations.forEach { recipe ->
+            val itemLayout = LinearLayout(requireContext()).apply {
+                orientation = LinearLayout.VERTICAL
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    marginEnd = 16.dp
+                }
+                gravity = Gravity.CENTER
+            }
+
+            val imageView = ImageView(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(130.dp, 190.dp)
+                contentDescription = recipe.name
+
+                setBackgroundResource(R.drawable.rounded)
+                clipToOutline = true
+                outlineProvider = ViewOutlineProvider.BACKGROUND
+            }
 
             Glide.with(requireContext())
                 .load(recipe.thumbnailUrl)
                 .placeholder(R.drawable.placeholder_image)
+                .transform(RoundedCorners(36))
+                .centerCrop()
                 .into(imageView)
 
-            imageView.setContentDescription(recipe.name)
+            val textView = TextView(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = 8.dp
+                }
+
+                val displayText = if (recipe.name.length > 15) {
+                    recipe.name.take(15) + "..."
+                } else {
+                    recipe.name
+                }
+
+                text = displayText
+                textSize = 14f
+                gravity = Gravity.CENTER
+            }
+
             imageView.setOnClickListener {
                 navigateToRecipeDetails(recipe.id)
             }
+
+            itemLayout.addView(imageView)
+            itemLayout.addView(textView)
+            container.addView(itemLayout)
         }
     }
+
 
     private fun navigateToRecipeDetails(recipeId: Int) {
         findNavController().navigate(
@@ -104,4 +153,8 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    val Int.dp: Int
+        get() = (this * resources.displayMetrics.density).toInt()
+
 }
