@@ -23,4 +23,14 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
         _recipes.value = recipeList
     }
 
+    fun getRecommendations(): List<RecipeModel> {
+        val allRecipes = _recipes.value ?: return emptyList()
+        return allRecipes.shuffled().take(5)
+    }
+
+    fun getRecipesOfTheWeek(): List<RecipeModel> {
+        val allRecipes = _recipes.value ?: return emptyList()
+        return allRecipes.shuffled().take(5)
+    }
+
 }

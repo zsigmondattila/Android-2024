@@ -49,15 +49,24 @@
 
         </LinearLayout>
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search recipes"
             android:inputType="text"
-            android:padding="12dp"
-            android:background="@color/buttonColor"
-            android:layout_marginTop="16dp"/>
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/search_bar_background"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/search_24px"
+        android:drawablePadding="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
         <TextView
             android:id="@+id/categories_label"
@@ -124,7 +133,7 @@
                 android:gravity="start">
 
                 <ImageView
-                    android:id="@+id/recipe_1"
+                    android:id="@+id/recommendation1"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/placeholder_image"
@@ -132,7 +141,7 @@
                     android:layout_marginEnd="16dp"/>
 
                 <ImageView
-                    android:id="@+id/recipe_2"
+                    android:id="@+id/recommendation2"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/placeholder_image"
@@ -140,7 +149,23 @@
                     android:layout_marginEnd="16dp"/>
 
                 <ImageView
-                    android:id="@+id/recipe_3"
+                    android:id="@+id/recommendation3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/placeholder_image"
+                    android:contentDescription="Recipe 3"
+                    android:layout_marginEnd="16dp"/>
+
+                <ImageView
+                    android:id="@+id/recommendation4"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/placeholder_image"
+                    android:contentDescription="Recipe 3"
+                    android:layout_marginEnd="16dp"/>
+
+                <ImageView
+                    android:id="@+id/recommendation5"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/placeholder_image"
@@ -193,6 +218,20 @@
                     android:layout_height="120dp"
                     android:src="@drawable/placeholder_image"
                     android:contentDescription="Recipe of the Week 3"
+                    android:layout_marginEnd="16dp"/>
+                <ImageView
+                    android:id="@+id/week_recipe_4"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/placeholder_image"
+                    android:contentDescription="Recipe of the Week 4"
+                    android:layout_marginEnd="16dp"/>
+                <ImageView
+                    android:id="@+id/week_recipe_5"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/placeholder_image"
+                    android:contentDescription="Recipe of the Week 5"
                     android:layout_marginEnd="16dp"/>
 
             </LinearLayout>

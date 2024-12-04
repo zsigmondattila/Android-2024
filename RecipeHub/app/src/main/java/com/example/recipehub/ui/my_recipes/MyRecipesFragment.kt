@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 
 class MyRecipesFragment : Fragment() {
 
-
     private val recipeListViewModel: RecipesViewModel by viewModels()
     private lateinit var recipeAdapter: RecipesAdapter
     private var _binding: FragmentRecipesBinding? = null
@@ -47,17 +46,16 @@ class MyRecipesFragment : Fragment() {
                 if (recipeList.isNotEmpty()) {
                     recipeAdapter.updateRecipes(recipeList)
                 } else {
-                    Log.d("RecipesFragment", "No recipes found.")
+                    Log.d("MyRecipesFragment", "No recipes found.")
                 }
             })
         }
     }
 
-
     private fun initRecyclerView() {
         recipeAdapter = RecipesAdapter(emptyList(), object : RecipesAdapter.OnRecipeClickListener {
-            override fun onRecipeClick(recipe: RecipeModel) {
-                navigateToRecipeDetails(recipe)
+            override fun onRecipeClick(recipeId: Int) {
+                navigateToRecipeDetails(recipeId)
             }
         })
 
@@ -67,10 +65,10 @@ class MyRecipesFragment : Fragment() {
         }
     }
 
-    private fun navigateToRecipeDetails(recipe: RecipeModel) {
+    private fun navigateToRecipeDetails(recipeId: Int) {
         findNavController().navigate(
             R.id.action_navigation_my_recipes_to_navigation_recipe_detail,
-            bundleOf("recipeId" to recipe.id)
+            bundleOf("RECIPE_ID" to recipeId)
         )
     }
 
