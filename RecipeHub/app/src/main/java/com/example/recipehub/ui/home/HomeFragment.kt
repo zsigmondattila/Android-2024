@@ -24,6 +24,7 @@ import android.widget.LinearLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.recipehub.utils.SharedPreferences
 
 
 class HomeFragment : Fragment() {
@@ -42,6 +43,22 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sharedPreferences = SharedPreferences(requireContext())
+        val givenName = sharedPreferences.getGivenName()
+        val avatar = sharedPreferences.getPicture()
+
+        if (!TextUtils.isEmpty(givenName)) {
+            binding.helloUser.text = "Welcome, $givenName!"
+        }
+
+        if (!TextUtils.isEmpty(avatar)) {
+            Glide.with(requireContext())
+                .load(avatar)
+                .placeholder(R.drawable.placeholder_image)
+                .circleCrop()
+                .into(binding.avatarImage)
+        }
 
         lifecycleScope.launch {
             recipesViewModel.fetchRecipes()
