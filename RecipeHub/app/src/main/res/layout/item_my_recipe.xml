@@ -35,7 +35,7 @@
                 android:id="@+id/image_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sok ido"
+                android:text="Sok idoooo"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 android:layout_gravity="bottom|start"
@@ -76,6 +76,15 @@
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_marginTop="4dp"/>
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="@android:color/white"
+                android:background="@color/primaryColor"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
     </LinearLayout>

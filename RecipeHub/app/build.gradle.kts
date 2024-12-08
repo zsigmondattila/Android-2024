@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.android.application") version libs.versions.agp
+    id("org.jetbrains.kotlin.android") version libs.versions.kotlin
+    id("com.google.devtools.ksp") version "2.0.21-1.0.25"
 }
 
 android {
@@ -49,7 +50,15 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.gson)
-    implementation(libs.material.v140)
+    implementation (libs.glide)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.common)
+    implementation(libs.play.services.base)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation (libs.play.services.auth)
     implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

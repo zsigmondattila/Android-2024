@@ -5,16 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.recipehub.R
-import com.example.recipehub.databinding.ItemRecipeBinding
+import com.example.recipehub.databinding.ItemMyRecipeBinding
 import com.example.recipehub.domain.model.RecipeModel
 
 class MyRecipesAdapter(
     private var recipes: List<RecipeModel>,
-    private val onRecipeClickListener: OnRecipeClickListener
+    private val onRecipeClickListener: OnRecipeClickListener,
+    private val onDeleteClickListener: OnDeleteClickListener
 ) : RecyclerView.Adapter<MyRecipesAdapter.RecipeItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeItemViewHolder {
-        val binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMyRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecipeItemViewHolder(binding)
     }
 
@@ -30,7 +31,7 @@ class MyRecipesAdapter(
         notifyDataSetChanged()
     }
 
-    inner class RecipeItemViewHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RecipeItemViewHolder(private val binding: ItemMyRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: RecipeModel) {
             binding.recipeTitle.text = recipe.name
             binding.recipeDescription.text = recipe.description
@@ -48,5 +49,9 @@ class MyRecipesAdapter(
 
     interface OnRecipeClickListener {
         fun onRecipeClick(recipe: RecipeModel)
+    }
+
+    interface OnDeleteClickListener {
+        fun onDeleteClick(recipe: RecipeModel)
     }
 }

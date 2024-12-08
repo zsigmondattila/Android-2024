@@ -15,14 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipehub.R
 import com.example.recipehub.databinding.FragmentRecipesBinding
 import com.example.recipehub.domain.model.RecipeModel
-import com.example.recipehub.ui.recipes.RecipesViewModel
-import com.example.recipehub.ui.recipes.RecipesAdapter
+import com.example.recipehub.ui.recipes.MyRecipesAdapter
+import com.example.recipehub.repository.recipe.RecipeRepository
 import kotlinx.coroutines.launch
 
 class MyRecipesFragment : Fragment() {
 
-    private val recipeListViewModel: RecipesViewModel by viewModels()
-    private lateinit var recipeAdapter: RecipesAdapter
+    private val recipeListViewModel: MyRecipesViewModel by viewModels()
+    private lateinit var recipeAdapter: MyRecipesAdapter
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
 
@@ -53,9 +53,13 @@ class MyRecipesFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        recipeAdapter = RecipesAdapter(emptyList(), object : RecipesAdapter.OnRecipeClickListener {
-            override fun onRecipeClick(recipeId: Int) {
-                navigateToRecipeDetails(recipeId)
+        recipeAdapter = MyRecipesAdapter(emptyList(), object : MyRecipesAdapter.OnRecipeClickListener {
+            override fun onRecipeClick(recipe: RecipeModel) {
+                navigateToRecipeDetails(recipe)
+            }
+        }, object : MyRecipesAdapter.OnDeleteClickListener {
+            override fun onDeleteClick(recipe: RecipeModel) {
+                deleteRecipe(recipe) // Call the delete function
             }
         })
 
@@ -65,11 +69,22 @@ class MyRecipesFragment : Fragment() {
         }
     }
 
-    private fun navigateToRecipeDetails(recipeId: Int) {
+    private fun navigateToRecipeDetails(recipe: RecipeModel) {
         findNavController().navigate(
             R.id.action_navigation_my_recipes_to_navigation_recipe_detail,
-            bundleOf("RECIPE_ID" to recipeId)
+            bundleOf("RECIPE_ID" to recipe.id)
         )
+    }
+
+    private fun deleteRecipe(recipe: RecipeModel) {
+        lifecycleScope.launch {
+            try {
+                deleteRecipe(recipe)
+                Log.d("MyRecipesFragment", "Recipe deleted successfully.")
+            } catch (e: Exception) {
+                Log.e("MyRecipesFragment", "Error deleting recipe: ${e.message}")
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -77,3 +92,4 @@ class MyRecipesFragment : Fragment() {
         _binding = null
     }
 }
+
