@@ -18,9 +18,9 @@ fun List<UnitDTO>.toModel(): List<UnitModel> {
 
 fun UnitModel.toDTO(): UnitDTO {
     return UnitDTO(
-        name = this.name,
-        displaySingular = this.displaySingular,
-        displayPlural = this.displayPlural,
-        abbreviation = this.abbreviation
+        name = this.name ?: "",
+        displaySingular = this.displaySingular ?: "",
+        displayPlural = this.displayPlural ?: "",
+        abbreviation = this.abbreviation ?: ""
     )
 }

@@ -10,7 +10,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.IOException
 import com.example.recipehub.data.entities.RecipeEntity
 import org.json.JSONObject
 import com.example.recipehub.data.database.RecipeDatabase
@@ -114,6 +113,29 @@ class RecipeRepository(private val context: Context) {
 
     private fun saveJsonToFile(jsonString: String, fileName: String) {
 
+    }
+
+    suspend fun addBookmark(recipeId: Int) {
+        withContext(Dispatchers.IO) {
+            recipeDao.updateBookmarkStatus(recipeId, true)
+        }
+    }
+
+    suspend fun removeBookmark(recipeId: Int) {
+        withContext(Dispatchers.IO) {
+            recipeDao.updateBookmarkStatus(recipeId, false)
+        }
+    }
+
+    suspend fun getBookmarkedRecipes(): List<RecipeModel> {
+        return withContext(Dispatchers.IO) {
+            recipeDao.getBookmarkedRecipes().map {
+                val jsonObject = JSONObject(it.json).apply {
+                    put("id", it.internalId)
+                }
+                gson.fromJson(jsonObject.toString(), RecipeDTO::class.java).toModel()
+            }
+        }
     }
 
 }

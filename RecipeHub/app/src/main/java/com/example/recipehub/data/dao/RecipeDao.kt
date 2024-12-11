@@ -20,4 +20,10 @@ interface RecipeDao {
 
     @Delete
     suspend fun deleteRecipe(recipe: RecipeEntity)
+
+    @Query("SELECT * FROM recipe WHERE isBookmarked = 1")
+    suspend fun getBookmarkedRecipes(): List<RecipeEntity>
+
+    @Query("UPDATE recipe SET isBookmarked = :isBookmarked WHERE internalId = :id")
+    suspend fun updateBookmarkStatus(id: Int, isBookmarked: Boolean)
 }

@@ -7,19 +7,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.recipehub.domain.model.RecipeModel
 import com.example.recipehub.repository.recipe.RecipeRepository
+import com.example.recipehub.utils.SharedPreferences
 
 class MyRecipesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val recipeRepository = RecipeRepository(application)
+    private val sharedPreferences = SharedPreferences(application)
 
     private val _recipes = MutableLiveData<List<RecipeModel>>()
     val recipes: LiveData<List<RecipeModel>> get() = _recipes
 
     suspend fun fetchRecipes() {
-        val recipeList = recipeRepository.readRecipesFromDatabase()
+        val recipeList = recipeRepository.readRecipesFromAPI()
 
-        Log.d("RecipeListViewModel", "Fetched Recipes: $recipeList")
+        val userEmail = sharedPreferences.getUserEmail()
 
-        _recipes.value = recipeList
+        Log.d("MyRecipesViewModel", "Fetched Recipes: $recipeList")
+
+        val myRecipes = recipeList.filter { recipe ->
+            recipe.userEmail == userEmail
+        }
+
+        _recipes.value = myRecipes
     }
 }
+

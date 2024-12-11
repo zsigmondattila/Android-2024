@@ -31,6 +31,7 @@ class SharedPreferences(context: Context) {
         editor.putString("GIVEN_NAME", userInfo.optString("given_name"))
         editor.putString("FAMILY_NAME", userInfo.optString("family_name"))
         editor.putString("PICTURE", userInfo.optString("picture"))
+        editor.putString("USER_EMAIL", userInfo.optString("email"))
 
         editor.apply()
     }
@@ -45,6 +46,10 @@ class SharedPreferences(context: Context) {
 
     fun getPicture(): String? {
         return sharedPref.getString("PICTURE", null)
+    }
+
+    fun getUserEmail(): String? {
+        return sharedPref.getString("USER_EMAIL", null)
     }
 
 }

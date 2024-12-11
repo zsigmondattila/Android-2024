@@ -1,6 +1,7 @@
 package com.example.recipehub.ui.recipe_detail
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,6 +21,13 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch {
             val recipeData = recipeRepository.getRecipeByIdFromAPI(recipeId)
             _recipe.value = recipeData
+        }
+    }
+
+    fun addToBookmark(recipe: RecipeModel) {
+        viewModelScope.launch {
+            recipeRepository.saveRecipeToDatabase(recipe)
+            Log.d("RecipeDetailViewModel", "Added to bookmark: $recipe")
         }
     }
 }

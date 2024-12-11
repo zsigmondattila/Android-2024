@@ -10,5 +10,7 @@ data class RecipeEntity(
     val internalId: Long = 0L,
 
     @SerializedName("json_data")
-    val json: String
+    val json: String,
+
+    val isBookmarked: Boolean = false
 )

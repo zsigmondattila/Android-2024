@@ -11,39 +11,41 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/login_logo"
-            android:layout_width="150dp"
+            android:layout_width="350dp"
             android:layout_height="150dp"
             android:src="@drawable/logo"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="28dp" />
 
         <TextView
             android:id="@+id/login_welcome_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to the RecipeHub!"
-            android:textSize="20sp"
+            android:text="Welcome!"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="46dp" />
+
+        <TextView
+            android:id="@+id/login_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover a world of delicious recipes, personalized for your taste and dietary needs. Join us and start cooking your favorite dishes today!"
+            android:textSize="19sp"
+            android:textColor="@android:color/darker_gray"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:id="@+id/login_error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_dark"
-            android:text="Error during signing in."
-            android:visibility="gone"
-            android:layout_marginTop="16dp" />
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp" />
 
     </LinearLayout>
 </ScrollView>
